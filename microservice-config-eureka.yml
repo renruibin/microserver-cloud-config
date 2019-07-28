@@ -1,0 +1,43 @@
+spring:
+  profiles:
+    active: dev
+---
+server:
+  port: 6001
+spring:
+  profiles: dev
+  application:
+    name: microservice-config-eureka
+eureka:
+  client:
+    fetch-registry: false   #服务发现关闭
+    register-with-eureka: false  #服务注册关闭
+    #eureka客户端和eureka服务端交互的地址，集群版配对方的地址，单机版配置自己的地址，默认是8761端口
+    service-url:
+      defaultZone: http://eureka6001.com:6001/eureka/
+  #eureka服务端实例名称
+  instance:
+    hostname: eureka6001.com
+  #关闭自我保护机制
+  server:
+    enable-self-preservation: false
+---
+server:
+  port: 6001
+spring:
+  profiles: prod
+  application:
+    name: microservice-config-eureka
+eureka:
+  client:
+    fetch-registry: false   #服务发现关闭
+    register-with-eureka: false  #服务注册关闭
+    #eureka客户端和eureka服务端交互的地址，集群版配对方的地址，单机版配置自己的地址，默认是8761端口
+    service-url:
+      defaultZone: http://eureka6001.com:6001/eureka/
+  #eureka服务端实例名称
+  instance:
+    hostname: eureka6001.com
+  #开启自我保护机制
+  server:
+    enable-self-preservation: true
